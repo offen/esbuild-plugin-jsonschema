@@ -1,0 +1,38 @@
+{
+  "name": "@offen/esbuild-plugin-jsonschema",
+  "version": "0.0.0",
+  "description": "Compile JSON schema definitions on import using esbuild",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/test.js",
+    "posttest": "standard",
+    "preversion": "npm test",
+    "version": "changes --commits",
+    "postversion": "git push --follow-tags && npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/offen/esbuild-plugin-jsonschema.git"
+  },
+  "keywords": [
+    "esbuild",
+    "ajv",
+    "json-schema"
+  ],
+  "author": "Frederik Ring <frederik.ring@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/offen/esbuild-plugin-jsonschema/issues"
+  },
+  "homepage": "https://github.com/offen/esbuild-plugin-jsonschema#readme",
+  "dependencies": {
+    "ajv": "^6.12.3",
+    "ajv-pack": "^0.3.1"
+  },
+  "devDependencies": {
+    "@studio/changes": "^2.0.1",
+    "esbuild": "^0.8.42",
+    "standard": "^16.0.3",
+    "tape": "^5.1.1"
+  }
+}
