@@ -1,6 +1,6 @@
 {
   "name": "@offen/esbuild-plugin-jsonschema",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Compile JSON schema definitions on import using esbuild",
   "main": "index.js",
   "scripts": {
