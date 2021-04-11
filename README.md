@@ -35,7 +35,7 @@ esbuild.build({
   entryPoints: ['app.js'],
   bundle: true,
   plugins: [jsonschemaPlugin()],
-  outdir: './public',
+  outdir: './public'
 })
 ```
 
