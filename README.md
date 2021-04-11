@@ -35,7 +35,7 @@ esbuild.build({
   entryPoints: ['app.js'],
   bundle: true,
   plugins: [jsonschemaPlugin()],
-  outdir: './public'
+  outdir: './public',
 })
 ```
 
@@ -63,6 +63,14 @@ By default, this plugin only compiles ["secure" schemas][secure]. This can be di
 ### `filter`
 
 By default, only files with a `.schema` extension are compiled. If you have different requirements you can pass a Regexp to `filter` for the plugin to use.
+
+### `formats`
+
+Includes [ajv-formats](https://github.com/ajv-validator/ajv-formats). Default `true`.
+
+### `options`
+
+Custom [options](https://ajv.js.org/options.html) to be passed to Ajv constructor.
 
 ## Releasing a new version
 

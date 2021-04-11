@@ -4,38 +4,40 @@
  */
 
 const Ajv = require('ajv')
-const pack = require('ajv-pack')
+const standaloneCode = require('ajv/dist/standalone').default
 const fs = require('fs')
+const addFormats = require('ajv-formats')
 
-const ajv = new Ajv({ sourceCode: true })
-const isSchemaSecure = ajv.compile(require('ajv/lib/refs/json-schema-secure.json'))
+const ajvSecure = new Ajv({ strictTypes: false })
+const isSchemaSecure = ajvSecure.compile(require('ajv/lib/refs/json-schema-secure.json'))
 
-module.exports = (options = {}) => ({
-  name: 'jsonschema',
-  setup (build) {
-    const secure = (options && 'secure' in options) ? options.secure : true
-    const filter = (options && 'filter' in options) ? options.filter : /\.schema$/
-
-    build.onLoad({ filter }, async (args) => {
-      const contents = await fs.promises.readFile(args.path, 'utf8')
-      let moduleCode
-      try {
-        const schema = JSON.parse(contents)
-        if (secure && !isSchemaSecure(schema)) {
+module.exports = ({ filter = /\.schema$/, secure = true, formats = true, options = {} } = {}) => {
+  const ajv = new Ajv({ code: { source: true }, ...options })
+  if (formats) addFormats(ajv)
+  return {
+    name: 'jsonschema',
+    setup (build) {
+      build.onLoad({ filter }, async (args) => {
+        const contents = await fs.promises.readFile(args.path, 'utf8')
+        let moduleCode
+        try {
+          const schema = JSON.parse(contents)
+          if (secure && !isSchemaSecure(schema)) {
+            return {
+              errors: isSchemaSecure.errors.map(err => {
+                return { text: `Schema ${args.path} is not secure`, detail: err }
+              })
+            }
+          }
+          moduleCode = standaloneCode(ajv, ajv.compile(schema))
+        } catch (err) {
           return {
-            errors: isSchemaSecure.errors.map(err => {
-              return { text: `Schema ${args.path} is not secure`, detail: err }
-            })
+            errors: [{ text: 'Error compiling and packing schema', detail: err }]
           }
         }
-        moduleCode = pack(ajv, ajv.compile(schema))
-      } catch (err) {
-        return {
-          errors: [{ text: 'Error compiling and packing schema', detail: err }]
-        }
-      }
 
-      return { contents: moduleCode }
-    })
+        return { contents: moduleCode }
+      })
+    }
   }
-})
+}
