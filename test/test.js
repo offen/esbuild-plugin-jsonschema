@@ -81,14 +81,14 @@ tape.test('invalid schema', function (t) {
 
 function bundle (file, opts, callback) {
   esbuild.build({
-      entryPoints: [path.join(__dirname, file)],
-      bundle: true,
-      plugins: [jsonschemaPlugin(opts)],
-      write: false
-    })
+    entryPoints: [path.join(__dirname, file)],
+    bundle: true,
+    plugins: [jsonschemaPlugin(opts)],
+    write: false
+  })
     .then(function (result) {
-        callback(null, result.outputFiles[0].text)
-      }, function (errResult) {
-        callback(errResult.errors)
-      })
+      callback(null, result.outputFiles[0].text)
+    }, function (errResult) {
+      callback(errResult.errors)
+    })
 }
