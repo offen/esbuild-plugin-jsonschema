@@ -57,6 +57,23 @@ tape.test('using custom matcher', function (t) {
   })
 })
 
+tape.test('using .schema.json extension', function (t) {
+  bundle('ext.js', {}, function (err, src) {
+    if (err) {
+      t.fail(err)
+    }
+
+    vm.runInNewContext(src, {
+      console: { log: log }
+    })
+
+    function log (value) {
+      t.equal(value, true, 'passes')
+      t.end()
+    }
+  })
+})
+
 tape.test('secure schema by default', function (t) {
   bundle('insecure.schema', {}, function (err, src) {
     t.ok(err, 'does not compile insecure schema')

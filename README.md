@@ -62,7 +62,7 @@ By default, this plugin only compiles ["secure" schemas][secure]. This can be di
 
 ### `filter`
 
-By default, only files with a `.schema` extension are compiled. If you have different requirements you can pass a Regexp to `filter` for the plugin to use.
+By default, files with a `.schema` or a `.schema.json` extension are compiled. If you have different requirements you can pass a Regexp to `filter` for the plugin to use.
 
 ### `addFormats`
 

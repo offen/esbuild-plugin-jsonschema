@@ -12,7 +12,7 @@ const ajvSecure = new Ajv({ strictTypes: false })
 const isSchemaSecure = ajvSecure.compile(require('ajv/lib/refs/json-schema-secure.json'))
 
 module.exports = ({
-  filter = /\.schema$/,
+  filter = /\.schema$|\.schema\.json$/,
   secure = true,
   addFormats = true,
   ajvOptions = {}
