@@ -64,11 +64,11 @@ By default, this plugin only compiles ["secure" schemas][secure]. This can be di
 
 By default, only files with a `.schema` extension are compiled. If you have different requirements you can pass a Regexp to `filter` for the plugin to use.
 
-### `formats`
+### `addFormats`
 
 Includes [ajv-formats](https://github.com/ajv-validator/ajv-formats). Default `true`.
 
-### `options`
+### `ajvOptions`
 
 Custom [options](https://ajv.js.org/options.html) to be passed to Ajv constructor.
 

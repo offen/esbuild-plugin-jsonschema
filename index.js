@@ -6,14 +6,19 @@
 const Ajv = require('ajv')
 const standaloneCode = require('ajv/dist/standalone').default
 const fs = require('fs')
-const addFormats = require('ajv-formats')
+const addAjvFormats = require('ajv-formats')
 
 const ajvSecure = new Ajv({ strictTypes: false })
 const isSchemaSecure = ajvSecure.compile(require('ajv/lib/refs/json-schema-secure.json'))
 
-module.exports = ({ filter = /\.schema$/, secure = true, formats = true, options = {} } = {}) => {
-  const ajv = new Ajv({ code: { source: true }, ...options })
-  if (formats) addFormats(ajv)
+module.exports = ({
+  filter = /\.schema$/,
+  secure = true,
+  addFormats = true,
+  ajvOptions = {}
+} = {}) => {
+  const ajv = new Ajv({ code: { source: true }, ...ajvOptions })
+  if (addFormats) addAjvFormats(ajv)
   return {
     name: 'jsonschema',
     setup (build) {
