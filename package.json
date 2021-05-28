@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@studio/changes": "^2.0.1",
-    "esbuild": "^0.8.42",
+    "esbuild": "^0.12.5",
     "standard": "^16.0.3",
     "tape": "^5.1.1"
   }
