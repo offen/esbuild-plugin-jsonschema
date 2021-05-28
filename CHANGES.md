@@ -1,5 +1,12 @@
 # Changes
 
+## 1.1.0
+
+- [`ceeb982`](https://github.com/offen/esbuild-plugin-jsonschema/commit/ceeb982ff47189d38276a4985ff430d4434f7f52)
+  run tests against esbuild 0.12
+- [`c6178eb`](https://github.com/offen/esbuild-plugin-jsonschema/commit/c6178eb9eccb5effc0786956d571df2a7ff8f193)
+  run npm audit
+
 ## 1.0.0
 
 Update to use Ajv 8, introduce `ajvOptions` and `addFormats` options.
