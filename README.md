@@ -11,7 +11,7 @@ npm install @offen/esbuild-plugin-jsonschema -D
 
 ## Usage
 
-In the default configuration, the transform is applied to all files with a `.schema` extension. The transformed module will export the packed AJV `validate` function.
+In the default configuration, the transform is applied to all files with a `.schema` or `.schema.json` extension. The transformed module will export the packed AJV `validate` function.
 
 In your application:
 
