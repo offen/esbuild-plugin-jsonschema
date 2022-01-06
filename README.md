@@ -1,3 +1,7 @@
+<a href="https://www.offen.dev/">
+    <img src="https://offen.github.io/press-kit/offen-material/gfx-GitHub-Offen-logo.svg" alt="Offen logo" title="Offen" width="150px"/>
+</a>
+
 # esbuild-plugin-jsonschema
 Compile and pack JSON schema definitions on import using esbuild
 
